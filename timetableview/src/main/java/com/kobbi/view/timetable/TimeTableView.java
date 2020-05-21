@@ -699,11 +699,11 @@ public class TimeTableView extends LinearLayout {
                     return true;
                 }
                 //case 3: exist start time is in time to register range.
-                if (exist.getStartTime().isPastOrSameTime(endTime) && startTime.isPastTime(exist.getStartTime())) {
+                if (exist.getStartTime().isPastTime(endTime) && startTime.isPastTime(exist.getStartTime())) {
                     return true;
                 }
                 //case 4: exist end time is in time to register range.
-                if (exist.getEndTime().isPastTime(endTime) && startTime.isPastOrSameTime(exist.getEndTime())) {
+                if (exist.getEndTime().isPastTime(endTime) && startTime.isPastTime(exist.getEndTime())) {
                     return true;
                 }
             }
