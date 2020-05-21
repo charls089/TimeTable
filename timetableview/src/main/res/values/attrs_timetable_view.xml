@@ -2,15 +2,15 @@
 <resources>
     <declare-styleable name="TimeTableView">
         <attr name="row_count" format="integer" />
-        <attr name="time_term" format="integer" />
+        <attr name="time_term_hour" format="integer" />
         <attr name="time_width" format="integer" />
         <attr name="header_height" format="dimension" />
         <attr name="box_line_color" format="color" />
         <attr name="box_color" format="color" />
         <attr name="box_height" format="dimension" />
         <attr name="week_type" format="enum">
-            <enum name="week" value="0" />
-            <enum name="weekend" value="1" />
+            <enum name="day" value="0" />
+            <enum name="week" value="1" />
         </attr>
     </declare-styleable>
 </resources>
