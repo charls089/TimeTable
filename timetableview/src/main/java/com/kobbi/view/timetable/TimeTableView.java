@@ -5,10 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
 import android.os.SystemClock;
 import android.util.AttributeSet;
@@ -717,33 +714,5 @@ public class TimeTableView extends LinearLayout {
         void onClickTable(List<Schedule> schedule);
 
         void onCompleteDraw(Schedule schedule);
-    }
-
-    private static class DisableTimeView extends View {
-        Paint diagonalLine = new Paint();
-        Path path = new Path();
-
-        public DisableTimeView(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            canvas.drawColor(Color.argb(90, 50, 50, 50));
-            diagonalLine.setStrokeWidth(8);
-            diagonalLine.setStyle(Paint.Style.STROKE);
-            diagonalLine.setColor(Color.argb(90, 255, 255, 255));
-            int width = getWidth();
-            int height = getHeight();
-            float term = 30;
-
-            for (int i = 0; i * term <= height; i++) {
-                for (int j = 0; j * term <= width; j++) {
-                    path.moveTo(j * term, i * term);
-                    path.lineTo((j + 1) * term, (i + 1) * term);
-                }
-            }
-            canvas.drawPath(path, diagonalLine);
-        }
     }
 }
