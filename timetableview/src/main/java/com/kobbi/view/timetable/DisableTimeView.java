@@ -9,8 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class DisableTimeView extends View {
-    Paint diagonalLine = new Paint();
-    Path path = new Path();
+    private Paint mDiagonalLine = new Paint();
+    private Path mPath = new Path();
 
     public DisableTimeView(Context context) {
         super(context);
@@ -22,20 +22,22 @@ public class DisableTimeView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        mDiagonalLine.reset();
+        mPath.reset();
         canvas.drawColor(Color.argb(90, 50, 50, 50));
-        diagonalLine.setStrokeWidth(8);
-        diagonalLine.setStyle(Paint.Style.STROKE);
-        diagonalLine.setColor(Color.argb(90, 255, 255, 255));
+        mDiagonalLine.setStrokeWidth(8);
+        mDiagonalLine.setStyle(Paint.Style.STROKE);
+        mDiagonalLine.setColor(Color.argb(90, 255, 255, 255));
         int width = getWidth();
         int height = getHeight();
         float term = 30;
 
         for (int i = 0; i * term <= height; i++) {
             for (int j = 0; j * term <= width; j++) {
-                path.moveTo(j * term, i * term);
-                path.lineTo((j + 1) * term, (i + 1) * term);
+                mPath.moveTo(j * term, i * term);
+                mPath.lineTo((j + 1) * term, (i + 1) * term);
             }
         }
-        canvas.drawPath(path, diagonalLine);
+        canvas.drawPath(mPath, mDiagonalLine);
     }
 }

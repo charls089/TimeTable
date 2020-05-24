@@ -19,23 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TimeTableView timeTableView = findViewById(R.id.time_table_view);
-        Schedule schedule1 = new Schedule(Schedule.getTime(10, 0), Schedule.getTime(19, 0), Calendar.MONDAY, Schedule.Type.ACTIVATED);
-        Schedule schedule2 = new Schedule(Schedule.getTime(20, 0), Schedule.getTime(23, 30), Calendar.MONDAY, Schedule.Type.ACTIVATED);
-        Schedule schedule4 = new Schedule(Schedule.getTime(4, 0), Schedule.getTime(10, 30), Calendar.FRIDAY, Schedule.Type.ACTIVATED);
-        Schedule schedule5 = new Schedule(Schedule.getTime(0, 0), Schedule.getTime(21, 30), Calendar.SATURDAY, Schedule.Type.INACTIVATED);
-        Schedule schedule6 = new Schedule(Schedule.getTime(0, 0), Schedule.getTime(4, 30), Calendar.TUESDAY, Schedule.Type.ACTIVATED);
-        Schedule schedule7 = new Schedule(Schedule.getTime(0, 0), Schedule.getTime(9, 0), Calendar.WEDNESDAY, Schedule.Type.DISABLED);
-        Schedule schedule8 = new Schedule(Schedule.getTime(19, 0), Schedule.getTime(24, 0), Calendar.WEDNESDAY, Schedule.Type.DISABLED);
-        Schedule schedule9 = new Schedule(Schedule.getTime(10, 0), Schedule.getTime(18, 0), Calendar.THURSDAY, Schedule.Type.DISABLED);
+        Schedule.Time startTime = Schedule.getTime(0,0);
+        Schedule.Time endTime = Schedule.getTime(9,0);
 
-        timeTableView.addSchedule(schedule1);
-        timeTableView.addSchedule(schedule2);
-        timeTableView.addSchedule(schedule4);
-        timeTableView.addSchedule(schedule5);
-        timeTableView.addSchedule(schedule6);
-        timeTableView.addSchedule(schedule7);
-        timeTableView.addSchedule(schedule8);
-        timeTableView.addSchedule(schedule9);
+        Schedule.Time startTime2 = Schedule.getTime(19,0);
+        Schedule.Time endTime2 = Schedule.getTime(24,0);
+
+        for (int i = Calendar.SUNDAY; i <= Calendar.SATURDAY; i++) {
+            timeTableView.addSchedule(getSchedule(startTime, endTime, i, Schedule.Type.DISABLED));
+            timeTableView.addSchedule(getSchedule(startTime2, endTime2, i, Schedule.Type.DISABLED));
+        }
 
         timeTableView.setEventListener(new TimeTableView.TimeTableEventListener() {
             @Override
@@ -56,5 +49,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("####", "onCompleteDraw() --> schedule : " + schedule);
             }
         });
+    }
+
+    private Schedule getSchedule(Schedule.Time startTime, Schedule.Time endTime, int dayOfWeek, Schedule.Type type) {
+        return new Schedule(startTime, endTime, dayOfWeek, type);
     }
 }
